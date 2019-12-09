@@ -26,7 +26,7 @@
 			</view>
 			<view slot="left"></view>
 			<view slot="right" class="navbar_right">
-				<uni-icons type="home-filled" size="60" :style="'color:' + newNumber > 0? '#2e8cf099;':'#d6e6da;' + 'transition: all 1s'"></uni-icons>
+				<uni-icons type="home-filled" size="60" :style="'color:' + (newNumber > 0? '#2e8cf099;':'#d6e6da;') + 'transition: all 1s'"></uni-icons>
 				<uni-badge :text="`${newNumber}`" :type="newNumber > 0 ? 'primary' : 'success'" size="small" @click="newNumber++" style="transition: all 1s;right: 30upx;bottom: 20upx;position: relative;"></uni-badge>
 			</view>
 		</uni-nav-bar>

@@ -1,1 +1,0 @@
-<view><view style="height:120rpx;"></view><uni-list vue-id="1" bind:__l="__l" vue-slots="{{['default']}}"><uni-list-item vue-id="{{('2')+','+('1')}}" title="高效模式" show-switch="{{true}}" switch-checked="{{$efficient.open}}" data-event-opts="{{[['^switchChange',[['switchChange']]]]}}" bind:switchChange="__e" bind:__l="__l"></uni-list-item></uni-list></view>
