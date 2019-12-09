@@ -1,5 +1,8 @@
 <template>
 	<view v-if="data" class="kc_order">
+		<!--  #ifdef  MP-WEIXIN -->
+		<view style="height: 120upx"></view>
+		<!--  #endif -->
 		<view class="kc_order_head">{{ data.type == 100 ? '饿了么订单' : '美团订单' }}</view>
 		<view class="kc_order_line"></view>
 		<view class="kc_order_content">
