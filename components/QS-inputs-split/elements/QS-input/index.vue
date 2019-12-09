@@ -2,7 +2,7 @@
 	<QStemplate :title="title" :titleHide="titleHide" :fontSize="fontSize" :width="width" :titleFlex="titleFlex"
 	 :contentFlex="contentFlex" :titleStyle="titleStyle" :contentStyle="contentStyle" :required="required" :requiredSign="requiredSign"
 	 :layout="layout" :titleLayout="titleLayout" :itemDisabled="itemDisabled" :titleColor="titleColor">
-		<view :class="`flex_row_none_c transition_point6s width100 padding_10rpx_15rpx ${border? 'border': ''}`" :style="
+		<view :class="'flex_row_none_c transition_point6s width100 padding_10rpx_15rpx ' + (border? 'border': '')" :style="
 			'border: 1px solid ' + 
 			(focusBl?
 			(focusBorderColor||'#999'):

@@ -1,6 +1,8 @@
 <template>
 	<view>
-		
+		<!--  #ifdef  MP-WEIXIN -->
+		<view style="height: 120upx"></view>
+		<!--  #endif -->
 		<!-- 显示Switch -->
 		<uni-list>
 		    <uni-list-item title="高效模式" :show-switch="true" :switch-checked="$efficient.open" @switchChange="switchChange"></uni-list-item>

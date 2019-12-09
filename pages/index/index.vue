@@ -1,10 +1,17 @@
 <template>
 	<view>
 		<uni-popup ref="popupTop" type="top" style="z-index:5555;">
-			<view class="kc_detail_popup" style="height: 900upx"><kc-order :data="orderDetail"></kc-order></view>
+			<view class="kc_detail_popup" style="height: 900upx; z-index:5555;" ><kc-order :data="orderDetail"></kc-order></view>
 		</uni-popup>
 		<an-layer ref="anRef" :autoClose="true" timer="3" type="info"><text>有一个新订单！！！</text></an-layer>
+		<!--  #ifdef  MP-WEIXIN -->
+		<!-- 兼容小程序按钮隐藏不了 -->
+		<view style="height: 120upx;background:#384038"></view>
+		<uni-nav-bar backgroundColor="#384038">
+		<!--  #endif -->
+		<!-- #ifndef  MP-WEIXIN -->
 		<uni-nav-bar :shadow="true" :fixed="true" backgroundColor="#384038">
+		<!-- #endif -->
 			<view class="center">
 				<QSInput
 					:value="searchInput"
@@ -19,24 +26,36 @@
 			</view>
 			<view slot="left"></view>
 			<view slot="right" class="navbar_right">
-				<uni-icons type="home-filled" size="60" :style="`color: ${newNumber > 0? '#2e8cf099':'#d6e6da'};transition: all 1s`"></uni-icons>
+				<uni-icons type="home-filled" size="60" :style="'color:' + newNumber > 0? '#2e8cf099;':'#d6e6da;' + 'transition: all 1s'"></uni-icons>
 				<uni-badge :text="`${newNumber}`" :type="newNumber > 0 ? 'primary' : 'success'" size="small" @click="newNumber++" style="transition: all 1s;right: 30upx;bottom: 20upx;position: relative;"></uni-badge>
 			</view>
 		</uni-nav-bar>
-		<view :class="`${!$isMoblie? 'kc_div' : 'kc_moblie_div'}`">
+		<view :class="(!$isMoblie? 'kc_div' : 'kc_moblie_div')">
+			<!--  #ifdef  MP-WEIXIN -->
+			<view class="kc_list" v-for="(item, index) in data" :key="index" @click="openDetail(item)" style="width: 100%;">
+			<!--  #endif -->
+			<!-- #ifndef  MP-WEIXIN -->
 			<view class="kc_list" v-for="(item, index) in data" :key="index" @click="openDetail(item)">
+			<!-- #endif -->
 				<image v-if="item.new" :src="'/static/icon/new.png'" style="transition: all 1s;right: 14px;position: absolute;width: 40upx;height: 40upx;z-index: 555;"></image>
+				<!-- backgroundColor 为兼容小程序样式渲染顺序 -->
 				<uni-card
 					class="kc_card"
 					:is-shadow="true"
 					:extra="item.title"
-					:style="`${!$isMoblie ? 'width: 200upx;' : 'width: 92%;'}${item['new'] ? 'background:#2e8cf099' : ''}`"
+					:backgroundColor="item['new'] ? '#2e8cf099' : '#3a825a21'"
+					:style="(!$isMoblie ? 'width: 200upx;' : 'width: 92%;') + (item['new'] ? 'background:#2e8cf099' : '')"
 				>
-					<view class="kc_content" :style="`${!$isMoblie ? 'font-size: 16upx;': ''}`">
+					<view class="kc_content" :style="(!$isMoblie ? 'font-size: 16upx;': '')">
 						<view class="kc_title">
 						<view class="kc_title_left">{{ item.title }}</view>
 						<view class="kc_title_right">
-							<uni-tag  :text="`${item.type == 100? '饿了么' : '美团'}`" type="primary" :class="`${item.type == 100? 'kc_tag_elm' : 'kc_tag_mt'}`" size="small"></uni-tag>	
+							<!--  #ifdef  MP-WEIXIN -->
+							<uni-tag  :text="`${item.type == 100? '饿了么' : '美团'}`" :type="`${item.type == 100? 'error' : 'warning'}`" :class="(item.type == 100? 'kc_tag_elm' : 'kc_tag_mt')" size="small"></uni-tag>
+							<!--  #endif -->
+							<!--  #ifndef  MP-WEIXIN -->
+							<uni-tag  :text="`${item.type == 100? '饿了么' : '美团'}`" type="primary" :class="(item.type == 100? 'kc_tag_elm' : 'kc_tag_mt')" size="small"></uni-tag>	
+							<!--  #endif -->
 						</view>
 						</view>
 						<view class="kc_line"></view>
@@ -209,13 +228,13 @@ export default {
 	}
 	&_tag {
 		&_elm {
-			background: #2e8cf099;
-			border-color: #2e8cf099;
+			background: #2e8cf099!important;
+			border-color: #2e8cf099!important;
 		}
 		
 		&_mt {
-			background: #f0ae2e99;
-			border-color: #558c7d;
+			background: #f0ae2e99!important;
+			border-color: #558c7d!important;
 		}
 	}
 }

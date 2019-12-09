@@ -23,7 +23,6 @@
   margin-bottom: 10px;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 .kc_order_merchandise_head.data-v-ed1b3cce {

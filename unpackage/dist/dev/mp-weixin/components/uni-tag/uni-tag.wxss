@@ -33,14 +33,12 @@
 .uni-tag.data-v-22220d35 {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: 0px 16px;
   height: 30px;
   line-height: 30px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   color: #333;
   border-radius: 6rpx;
@@ -92,7 +90,7 @@
   color: #f0ad4e !important;
 }
 .uni-tag-text--error.data-v-22220d35 {
-  color: #dd524d !important;
+  color: #2e8cf0 !important;
 }
 .uni-tag--primary.data-v-22220d35 {
   color: #fff;
@@ -138,17 +136,17 @@
 }
 .uni-tag--error.data-v-22220d35 {
   color: #fff;
-  background-color: #dd524d;
+  background-color: #2e8cf0;
   border-width: 1rpx;
   border-style: solid;
-  border-color: #dd524d;
+  border-color: #2e8cf0;
 }
 .error-uni-tag--inverted.data-v-22220d35 {
-  color: #dd524d;
+  color: #2e8cf0;
   background-color: #ffffff;
   border-width: 1rpx;
   border-style: solid;
-  border-color: #dd524d;
+  border-color: #2e8cf0;
 }
 .uni-tag--inverted.data-v-22220d35 {
   color: #333;

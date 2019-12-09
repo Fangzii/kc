@@ -10,6 +10,9 @@
 export default class Request {
   config = {
     baseUrl: '/api/',
+	// #ifndef H5
+	baseUrl: 'http://192.168.1.141:8888/api/',
+	// #endif
     header: {
       'content-type': 'application/json',
     },

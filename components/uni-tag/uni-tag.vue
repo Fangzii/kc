@@ -8,7 +8,7 @@
       'uni-tag--' + size
     ]"
 	 @click="onClick()" class="uni-tag" v-if="text">
-		<text :class="[type === 'default' ? 'uni-tag--default':'uni-tag-text',inverted === true || inverted === 'true' ? 'uni-tag-text--'+type : '',size === 'small' && $isMoblie ? 'uni-tag-text--small':'' ]" :style="`${$isMoblie? '' :'font-size: 16upx'}`">{{ text }}</text>
+		<text :class="[type === 'default' ? 'uni-tag--default':'uni-tag-text',inverted === true || inverted === 'true' ? 'uni-tag-text--'+type : '',size === 'small' && $isMoblie ? 'uni-tag-text--small':'' ]" :style="($isMoblie? '' :'font-size: 16upx')">{{ text }}</text>
 	</view>
 </template>
 

@@ -33,12 +33,10 @@
 .uni-badge.data-v-5c2761f2 {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
   height: 40rpx;
   line-height: 40rpx;
@@ -89,18 +87,16 @@
 }
 .uni-badge--error.data-v-5c2761f2 {
   color: #fff;
-  background-color: #dd524d;
+  background-color: #2e8cf0;
 }
 .uni-badge--error-inverted.data-v-5c2761f2 {
-  color: #dd524d;
+  color: #2e8cf0;
   background-color: transparent;
 }
 .uni-badge--small.data-v-5c2761f2 {
   -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
           transform: scale(0.8);
   -webkit-transform-origin: center center;
-      -ms-transform-origin: center center;
           transform-origin: center center;
 }
 

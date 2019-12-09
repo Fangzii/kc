@@ -1,6 +1,6 @@
 <template>
 	<view :class="{ 'uni-card--full': isFull === true || isFull === 'true', 'uni-card--shadow': isShadow === true || isShadow === 'true' }"
-	 class="uni-card" @click="onClick">
+	 class="uni-card" @click="onClick" :style="backgroundColor? 'background:' + backgroundColor: ''">
 		<view v-if="mode === 'style'" class="uni-card__thumbnailimage">
 			<view class="uni-card__thumbnailimage-box">
 				<image class="uni-card__thumbnailimage-image" :src="thumbnail" mode="aspectFill" />
@@ -72,7 +72,12 @@
 				// 是否开启阴影
 				type: Boolean,
 				default: false
-			}
+			},
+			backgroundColor: {
+				// 是否开启阴影
+				type: String,
+				default: ''
+			},
 		},
 		methods: {
 			onClick() {
