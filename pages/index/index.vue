@@ -3,6 +3,9 @@
 		<uni-popup ref="popupTop" type="top" style="z-index:5555;">
 			<view class="kc_detail_popup" style="height: 900upx; z-index:5555;" ><kc-order :data="orderDetail"></kc-order></view>
 		</uni-popup>
+		<uni-popup ref="popupShop" type="center" style="z-index:5555;">
+			<view><kc-shop></kc-shop></view>
+		</uni-popup>
 		<an-layer ref="anRef" :autoClose="true" timer="3" type="info"><text>有一个新订单！！！</text></an-layer>
 		<!--  #ifdef  MP-WEIXIN -->
 		<!-- 兼容小程序按钮隐藏不了 -->
@@ -24,10 +27,12 @@
 					blurBorderColor="#b7e6cc"
 				></QSInput>
 			</view>
-			<view slot="left"></view>
+			<view slot="left" class="navbar_left">
+				<image src="../../static/icon/logo.png" style="height: 100upx;width: 100upx"></image>
+			</view>
 			<view slot="right" class="navbar_right">
-				<uni-icons type="home-filled" size="60" :style="'color:' + (newNumber > 0? '#2e8cf099;':'#d6e6da;') + 'transition: all 1s'"></uni-icons>
-				<uni-badge :text="`${newNumber}`" :type="newNumber > 0 ? 'primary' : 'success'" size="small" @click="newNumber++" style="transition: all 1s;right: 30upx;bottom: 20upx;position: relative;"></uni-badge>
+				<uni-icons type="home-filled" size="60" :style="'color:' + (newNumber > 0? '#2e8cf099;':'#d6e6da;') + 'transition: all 1s'"  @click="openShop"></uni-icons>
+				<uni-badge :text="`${newNumber}`" :type="newNumber > 0 ? 'primary' : 'success'" size="small" @click="openShop" style="transition: all 1s;right: 30upx;bottom: 20upx;position: relative;"></uni-badge>
 			</view>
 		</uni-nav-bar>
 		<view :class="(!$isMoblie? 'kc_div' : 'kc_moblie_div')">
@@ -81,6 +86,7 @@ import uniCard from '@/components/uni-card/uni-card';
 import uniBadge from '@/components/uni-badge/uni-badge.vue';
 import uniIcons from '@/components/uni-icons/uni-icons.vue';
 import kcOrder from '@/components/kc-order/kc-order';
+import kcShop from '@/components/kc-shop/kc-shop';
 import QSInput from '@/components/QS-inputs-split/elements/QS-input/index.vue';
 export default {
 	components: {
@@ -91,6 +97,7 @@ export default {
 		uniCollapse,
 		uniCollapseItem,
 		kcOrder,
+		kcShop,
 		uniBadge,
 		anLayer,
 		uniIcons,
@@ -118,7 +125,7 @@ export default {
 	},
 	methods: {
 		getOrder() {
-			this.$api.get('order/').then(res => {
+			this.$api.get('order/', {params: { date: this.$setting.date }}).then(res => {
 				this.data = res.data;
 				let total = 0;
 				for (let i in this.data) {
@@ -131,17 +138,18 @@ export default {
 					}
 				}
 				this.newNumber = total; // 更新计数器
-				console.log(this.$efficient.open ? 1500 : 5000)
 				// 轮询
 				setTimeout(() => {
 					this.getOrder();
-				}, (this.$efficient.open ? 1500 : 5000));
+				}, (this.$setting.efficient ? 1500 : 5000));
 			});
 		},
 		openDetail(item) {
 			this.orderDetail = item;
-			console.log(this.orderDetail, 99);
 			this.$refs.popupTop.open();
+		},
+		openShop() {
+			this.$refs.popupShop.open();
 		}
 	}
 };
@@ -181,10 +189,16 @@ export default {
 		display: flex;
 		padding: 10upx;
 		flex-wrap: wrap;
+		 // #ifndef  MP-WEIXIN
+		height: 1200upx;
+		// #endif
 		background: #c5e0c554;
 	}
 	
 	&_moblie_div {
+		// #ifndef  MP-WEIXIN
+		height: 1200upx;
+		// #endif
 		padding: 10upx;
 		background: #c5e0c554;
 	}
@@ -243,8 +257,13 @@ export default {
 	float: right;
 	margin-left: 0;
 }
+
+.navbar_left {
+	margin-top: 70upx;
+	padding: 35upx;
+}
 .center {
-	// margin-left: 25upx;
+	margin-left: 20upx;
 }
 
 </style>

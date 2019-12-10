@@ -5,7 +5,7 @@
 		<!--  #endif -->
 		<!-- 显示Switch -->
 		<uni-list>
-		    <uni-list-item title="高效模式" :show-switch="true" :switch-checked="$efficient.open" @switchChange="switchChange"></uni-list-item>
+		    <uni-list-item title="高效模式" :show-switch="true" :switch-checked="$setting.efficient" @switchChange="switchChange"></uni-list-item>
 		</uni-list>
 	</view>
 </template>
@@ -21,7 +21,7 @@ export default {
 	},
 	methods: {
 		switchChange(e) {
-			this.$efficient.open = !this.$efficient.open;
+			this.$setting.efficient = !this.$setting.efficient;
 		}
 	}
 };

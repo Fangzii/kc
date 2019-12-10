@@ -12,8 +12,10 @@ Vue.prototype.$api = http
 // 全局加载时间控制
 Vue.prototype.$moment = moment
 Vue.prototype.$store = store;
-Vue.prototype.$efficient= {
-	open: false,
+console.log(moment(new Date).format('YYYY-MM-DD'))
+Vue.prototype.$setting = {
+	efficient: false,
+	date: moment(new Date).format('YYYY-MM-DD')
 };
 
 // 全局控制屏幕宽度
